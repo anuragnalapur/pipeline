@@ -21,7 +21,7 @@ pipeline {
 		
     	stage('copying dockerfile and playbook to ansible server') {
     		steps {
-    			sshagent(['ssh']) {
+    			sshagent(['ssh-key']) {
     		
     				sh 'scp -o StrickHostKeyChecking=no Dockerfile ec2-user@3.235.94.113:/home/ec2-user'
     				sh 'scp -o StrickHostKeyChecking=no docker-image.yaml ec2-user@3.235.94.113:/home/ec2-user'
@@ -31,7 +31,7 @@ pipeline {
 
 		stage('build the image') {
 			steps {
-				sshagent(['ssh']) {
+				sshagent(['ssh-key']) {
 					sh 'ssh -o StrickHostKeyChecking=no ec2-user@3.235.94.113 \"ansible-playbook docker-image.yaml\"'
 
 				}
