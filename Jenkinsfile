@@ -23,8 +23,8 @@ pipeline {
     			steps {
     			
     		
-    				sh 'scp -o StrickHostKeyChecking=no Dockerfile ec2-user@3.235.94.113:/home/ec2-user'
-    				sh 'scp -o StrickHostKeyChecking=no docker-image.yaml ec2-user@3.235.94.113:/home/ec2-user'
+    				sh 'scp -o Dockerfile ec2-user@3.235.94.113:/home/ec2-user'
+    				sh 'scp -o docker-image.yaml ec2-user@3.235.94.113:/home/ec2-user'
     			
     			}
 		}
