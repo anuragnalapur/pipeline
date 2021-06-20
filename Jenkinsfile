@@ -23,8 +23,8 @@ pipeline {
     		steps {
     			sshagent(['ssh-key']) {
     		
-    				sh 'scp -o StrickHostKeyChecking=yes Dockerfile ec2-user@3.235.94.113:/home/ec2-user'
-    				sh 'scp -o StrickHostKeyChecking=yes docker-image.yaml ec2-user@3.235.94.113:/home/ec2-user'
+    				sh 'scp -o StrickHostKeyChecking=no Dockerfile ec2-user@3.235.94.113:/home/ec2-user'
+    				sh 'scp -o StrickHostKeyChecking=no docker-image.yaml ec2-user@3.235.94.113:/home/ec2-user'
     			}
     		}
 		}
@@ -32,7 +32,7 @@ pipeline {
 		stage('build the image') {
 			steps {
 				sshagent(['ssh-key']) {
-					sh 'ssh -o StrickHostKeyChecking=yes ec2-user@3.235.94.113 \"ansible-playbook docker-image.yaml\"'
+					sh 'ssh -o StrickHostKeyChecking=no ec2-user@3.235.94.113 \"ansible-playbook docker-image.yaml\"'
 
 				}
 
