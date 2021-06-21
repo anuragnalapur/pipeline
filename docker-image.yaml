@@ -34,6 +34,3 @@
           listen_port: 8080
         source: build
 
-  - name: Start the container
-    cmd: docker run -dit -p 8080:8080 --name docker-container docker-image
-
