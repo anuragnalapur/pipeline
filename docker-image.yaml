@@ -18,4 +18,4 @@
       source: build
 
   - name: Run the container
-    cmd: docker run -dit -p 8081:8081 --name docker-container docker-image
+    cmd: docker run -dit -p 8080:8080 --name docker-container docker-image
