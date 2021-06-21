@@ -7,7 +7,7 @@
   tasks:
   - name: Install docker and some dependencies
     yum:
-      name: python3-pip, docker.io
+      name: python3-pip
       state: present
 
   - name: Start docker service
