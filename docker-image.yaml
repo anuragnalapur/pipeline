@@ -1,12 +1,29 @@
 ---
 - hosts: localhost
+  become: True
+  become_method: sudo
+
+
   tasks:
+  - name: Install docker and some dependencies
+    yum:
+      name: python3-pip, docker.io
+      state: present
+
+  - name: Start docker service
+    service:
+      name: docker
+      state: started
+
+  - name: install docker python module
+    pip:
+      name: docker
 
   - name: Pull the tomcat container image
     docker_image:
       name: tomcat:latest
       source: pull
-
+    
   - name: Build image with buils args
     docker_image:
       name: docker-image
@@ -15,7 +32,8 @@
         pull: no
         args:
           listen_port: 8080
-      source: build
+        source: build
 
-  - name: Run the container
+  - name: Start the container
     cmd: docker run -dit -p 8080:8080 --name docker-container docker-image
+
